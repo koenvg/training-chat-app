@@ -15,7 +15,9 @@
     "semantic-ui": "^2.2.11",
     "semantic-ui-react": "^0.71.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/react-redux": "^4.4.47"
+  },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",

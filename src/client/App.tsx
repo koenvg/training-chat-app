@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { UserForm } from './components/UserForm';
+import { Chat } from './components/Chat/Chat';
+import { Header } from './components/Header/Header';
 import { Container } from 'semantic-ui-react';
 
 class App extends React.Component<{}, {}> {
   render() {
     return (
       <Container>
-        <UserForm />
+        <Header />
+        <Chat />
       </Container>
     );
   }

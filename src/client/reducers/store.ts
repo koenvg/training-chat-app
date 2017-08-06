@@ -6,7 +6,7 @@ export interface ChatStore {
 }
 
 export const createChatStore = () => {
-  createStore(combineReducers({
+  return createStore<ChatStore>(combineReducers({
     currentUser
   }));
 };

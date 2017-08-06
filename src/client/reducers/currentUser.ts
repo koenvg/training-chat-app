@@ -1,11 +1,14 @@
 import { Reducer, Action } from 'redux';
+import { guid } from '../../utils/guuid';
 
 export interface CurrentUser {
+  id: string;
   userName: string;
   image: string;
 }
 
 const defaultState: CurrentUser = {
+  id: guid(),
   userName: 'Jos',
   image: ''
 };
