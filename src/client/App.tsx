@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Chat } from './components/Chat/Chat';
-import { Header } from './components/Header/Header';
+import { HeaderContainer } from './components/Header/HeaderContainer';
 import { Container } from 'semantic-ui-react';
 
 class App extends React.Component<{}, {}> {
   render() {
     return (
       <Container>
-        <Header />
+        <HeaderContainer />
         <Chat />
       </Container>
     );

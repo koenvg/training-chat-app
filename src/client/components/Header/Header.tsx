@@ -1,14 +1,19 @@
 import * as React from 'react';
+import { CurrentUser } from '../../reducers/currentUser';
 
-export const Header: React.SFC<{}> = () => {
+interface Props {
+  currentUser: CurrentUser;
+}
+export const Header: React.SFC<Props> = ({ currentUser }) => {
+  const now = new Date();
   return (
     <div className='menu'>
       <div className='back'>
         <i className='fa fa-chevron-left' />
-        <img src='https://i.imgur.com/DY6gND0.png' />
+        <img src={currentUser.image} />
       </div>
-      <div className='name'>Alex</div>
-      <div className='last'>18:09</div>
+      <div className='name'>{currentUser.userName}</div>
+      <div className='last'>{now.getHours()} : {now.getMinutes()}</div>
     </div>
   );
 };
