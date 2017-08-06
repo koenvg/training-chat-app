@@ -4,13 +4,13 @@ import { selectRandomElementFromArray } from '../../utils/random';
 
 const names = ['Jos', 'Jef', 'Homer', 'Marge'];
 
-export interface CurrentUser {
+export interface User {
   id: string;
   userName: string;
   image: string;
 }
 
-const defaultState: CurrentUser = {
+const defaultState: User = {
   id: guid(),
   userName: selectRandomElementFromArray(names),
   image: 'https://randomuser.me/api/portraits/med/'
@@ -20,7 +20,7 @@ const defaultState: CurrentUser = {
   + '.jpg',
 };
 
-export const currentUser: Reducer<CurrentUser> = (state = defaultState, action: Action) => {
+export const currentUser: Reducer<User> = (state = defaultState, action: Action) => {
   switch (action.type) {
     default:
       return state;

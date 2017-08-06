@@ -1,18 +1,18 @@
 import { connect, MapStateToProps } from 'react-redux';
 import { Header } from './Header';
 import { ChatStore } from '../../reducers/store';
-import { CurrentUser } from '../../reducers/currentUser';
+import { User } from '../../reducers/currentUser';
 
 interface Props {
 }
 
 interface StateProps {
-  currentUser: CurrentUser;
+  me: User;
 }
 
 const mapStateToProps: MapStateToProps<StateProps, Props> = (state: ChatStore) => {
   return {
-    currentUser: state.currentUser,
+    me: state.currentUser,
   };
 };
 

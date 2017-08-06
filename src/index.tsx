@@ -6,8 +6,12 @@ import '../node_modules/semantic-ui/dist/semantic.min.css';
 import './main.css';
 import { Provider } from 'react-redux';
 import { createChatStore } from './client/reducers/store';
+import { initializeApp } from 'firebase';
 
-const store = createChatStore();
+const firebase = initializeApp({
+  databaseURL: 'https://training-chat-app.firebaseio.com/',
+});
+const store = createChatStore(firebase);
 
 ReactDOM.render(
   <Provider store={store}>

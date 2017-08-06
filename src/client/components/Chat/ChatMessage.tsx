@@ -1,14 +1,19 @@
 import * as React from 'react';
+import { Message } from '../../reducers/messages';
+import { User } from '../../reducers/currentUser';
 
-export const ChatMessage: React.SFC<{}> = () => {
+interface Props {
+  message: Message;
+  me: User;
+}
+export const ChatMessage: React.SFC<Props> = ({ message, me }) => {
+  const date = new Date(message.date);
   return (
-    <li className='self'>
-      <div className='avatar'><img src='https://i.imgur.com/HYcn9xO.png' /></div>
+    <li className={me.id === message.user.id ? 'self' : 'other'}>
+      <div className='avatar'><img src={message.user.image} /></div>
       <div className='msg'>
-        <p>Puff...</p>
-        <p>Aún estoy haciendo el contexto de Góngora... </p>
-        <p>Mejor otro día</p>
-        <time>20:18</time>
+        <p>{message.message}</p>
+        <time>{date.getHours()}:{date.getMinutes()}</time>
       </div>
     </li>
   );

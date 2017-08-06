@@ -1,15 +1,26 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { CurrentUser, currentUser } from './currentUser';
+import { User, currentUser } from './currentUser';
+import { app } from 'firebase';
+import { createFirebaseMessageProxy } from '../services/firebaseMessageProxy';
+import { messages, Message } from './messages';
+import { createEpicMiddleware } from 'redux-observable';
+import { messageEpic } from '../epics/messageEpic';
 
 export interface ChatStore {
-  currentUser: CurrentUser;
+  currentUser: User;
+  messages: Message[];
 }
 
 const reducers = combineReducers<ChatStore>({
-  currentUser
+  currentUser,
+  messages
 });
 
-const middleware = applyMiddleware();
-export const createChatStore = () => {
-  return createStore<ChatStore>(reducers, middleware);
+export const createChatStore = (firebase: app.App) => {
+  const epicMiddleware = createEpicMiddleware(messageEpic(firebase));
+  const middleware = applyMiddleware(epicMiddleware);
+
+  const store = createStore<ChatStore>(reducers, middleware);
+  createFirebaseMessageProxy(firebase, store.dispatch);
+  return store;
 };
